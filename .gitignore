@@ -1,0 +1,14 @@
+/source/front_end/.next/*
+/source/front_end/.next
+/source/front_end/node_modules
+/sourcefront_end/node_modules/*
+/source/api/node_modules
+/source/api/node_modules/*
+/source/admin/node_modules
+/source/admin/node_modules/*
+/JobSystem-API
+/JobSystem-API/*
+/JobSystem-FrontEnd
+/JobSystem-FrontEnd/*
+/JobSytem-Admin
+/JobSytem-Admin/*

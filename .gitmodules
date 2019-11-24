@@ -1,0 +1,12 @@
+[submodule "api"]
+	path = api
+	url = git@github.com:zrg-team/node_express_respository.git
+	branch = master
+[submodule "admin"]
+	path = admin
+	url = git@github.com:zrg-team/demo_admin.git
+	branch = master
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:zrg-team/demo_frontend.git
+	branch = master

@@ -1,0 +1,87 @@
+version: '3.3'
+networks:
+  app-tier:
+    driver: bridge
+services:
+  web:
+    container_name: "web"
+    image: "node:latest"
+    user: "node"
+    working_dir: /home/node/app
+    networks:
+      - app-tier
+    depends_on:
+      - api
+    volumes:
+      - ./frontend:/home/node/app
+    ports:
+      - 5000:3000
+    # command: >
+    #   bash -c "npm run dev"
+    # command: "npm run dev"
+    command: "sleep 999999"
+  api: 
+    container_name: "api"
+    image: "node:latest"
+    user: "node"
+    expose:
+      - 4000
+    networks:
+      - app-tier
+    depends_on:
+      - mariadb
+    working_dir: /home/node/app
+    volumes:
+      - ./api:/home/node/app
+    ports:
+      - 5001:4000
+    # command: "npm start"
+    command: "sleep 999999"
+  # docker exec -it db bash -l
+  mariadb:
+    container_name: "mariadb"
+    image: mariadb
+    restart: always
+    working_dir: /home/
+    networks:
+      - app-tier
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    volumes:
+      - ./database/:/docker-entrypoint-initdb.d
+      - ./database:/home/
+    ports:
+      - 5006
+      - 5006:3306
+    # command: ["cp setup.sql ../docker-entrypoint-initdb.d/"]
+  adminer:
+    container_name: "adminer"
+    image: adminer
+    networks:
+      - app-tier
+    depends_on:
+      - mariadb
+    restart: always
+    ports:
+      - 8082:8080
+  # swagger-editor:
+  #   image: swaggerapi/swagger-editor
+  #   container_name: "swagger-editor"
+  #   volumes:
+  #     - ../source/api/swagger.json:/openapi.json
+  #   environment:
+  #     SWAGGER_JSON: /openapi.json
+  #   ports:
+  #     - "8083:8080"
+  # swagger-ui:
+  #   image: swaggerapi/swagger-ui
+  #   container_name: "swagger-ui"
+  #   ports:
+  #     - "8084:8080"
+  #   volumes:
+  #     - ../source/api/swagger.json:/openapi.json
+  #   environment:
+  #     SWAGGER_JSON: /openapi.json
