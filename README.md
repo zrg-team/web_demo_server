@@ -1,17 +1,18 @@
 ## About
 
 We create a simple system includes: api, frontpage, admin site
-+ api: Nodejs, express, mariadb posible to running on docker and easy to scale
-+ front page: Nextjs, react, redux. Server site render support SEO, target on end-user
-+ admin: Create-react-app, react, redux. Client site render, target on admin-user
++ api: [Nodejs](https://nodejs.org/en/), [express](https://expressjs.com/), [mariadb](https://mariadb.org/). Posible to running on docker and easy to scale.
++ front page: [Nextjs](https://nextjs.org/), [react](https://reactjs.org/), [redux](https://redux.js.org/). Server site render, support SEO, target on end-user, same source base with mobile and admin-site.
++ admin: [Create-react-app](https://create-react-app.dev/), [react](https://reactjs.org/), [redux](https://redux.js.org/). Client site render, target on admin-user, same source base with mobile and admin-site
 
 To scale as microservice system, we must have the API gateway ([Kong](https://konghq.com/kong/)) and every request should go throught the gateway. (it will done later)
-Some services will interact with Khafka to handle request (like orders, message, etc) (it will done later)
+
+Some services will interact with Khafka to handle request. (like orders, message, etc) (it will done later)
 
 
 ## DEV
 
-```
+```bash
 // git submodule 
 git submodule init
 git submodule update
